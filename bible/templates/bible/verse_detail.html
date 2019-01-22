@@ -1,0 +1,11 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Verse Detail
+{% endblock %}
+
+{% block content %}
+<div class="contatiner">
+	{{ verse.book|title }}
+</div>
+{% endblock %}

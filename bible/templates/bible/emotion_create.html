@@ -1,0 +1,37 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Create Emotion
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="field">
+		<form
+			action="{% url 'emotion_create' %}"
+			method="post">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			{{ form.name.errors }}
+			<p>
+				<label for="id_name" class="label">
+					Name: 
+				</label>
+				{{ form.name }}
+			</p>
+			{{ form.slug.errors }}
+			<p>
+				<label for="id_slug" class="label">
+					Slug: 
+				</label>
+				{{ form.slug }}
+			</p>
+			<p style="padding: 10px">
+				<button type="submit" class="button is-primary">
+					Create Emotion
+				</button>
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Home
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<p>
+		{{ time }} Master Arnold
+	</p>
+</div>
+<section class="hero" style="background-image:url(../static/site/image.jpg);height:800px;background-size: cover;width:100%">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title">
+				Welcome to the party!
+				
+			</h1>
+			<h2 class="subtitle">
+				This is my playground for Django web dev.
+			</h2>
+		</div>
+	</div>
+</section>
+{% endblock %}

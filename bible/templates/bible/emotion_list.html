@@ -1,0 +1,35 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Emotion List
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="status row">
+		{% if not emotion_list %}
+			<div class="row">
+				<p>
+					You have no emotions...
+				</p>
+				<p>
+					Please visit <a href="{% url 'emotion_create' %}">our create page </a> in order to add new emotions you robot. 
+				</p>
+			</div>
+		{% else %}
+			<p> 
+				How are you feeling today?
+			</p>
+			<ul>
+				{% for emotion in emotion_list %}
+				<li style="padding:5px">
+					<a href="{{ emotion.get_new_url }}" class="button is-primary">
+						{{ emotion.name|title }}
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

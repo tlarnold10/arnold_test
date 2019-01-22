@@ -1,0 +1,65 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Create Emotion
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="field">
+		<form
+			action="{% url 'verse_create' %}"
+			method="post">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			{{ form.book.errors }}
+			<p>
+				<label for="id_book" class="label">
+					Book: 
+				</label>
+				{{ form.book }}
+			</p>
+			{{ form.chapter.errors }}
+			<p>
+				<label for="id_chapter" class="label">
+					Chapter: 
+				</label>
+				{{ form.chapter }}
+			</p>
+			{{ form.verses.errors }}
+			<p>
+				<label for="id_verses" class="label">
+					Verses: 
+				</label>
+				{{ form.verses }}
+			</p>
+			{{ form.text.errors }}
+			<p>
+				<label for="id_text" class="label">
+					Text: 
+				</label>
+				{{ form.text }}
+			</p>
+			{{ form.slug.errors }}
+			<p>
+				<label for="id_slug" class="label">
+					Slug: 
+				</label>
+				{{ form.slug }}
+			</p>
+			{{ form.emotion.errors }}
+			<p>
+				<label for="id_emotion" class="label">
+					Emotion: 
+				</label>
+				{{ form.emotion }}
+			</p>
+			<p style="padding: 10px">
+				<button type="submit" class="button is-primary">
+					Create Verse
+				</button>
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

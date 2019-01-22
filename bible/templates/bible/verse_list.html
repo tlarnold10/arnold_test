@@ -1,0 +1,33 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Verse List
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="status row">
+		{% if not verse_list %}
+			<div class="row">
+				<p>
+					You have no verses for this emotion...
+				</p>
+				<p>
+					Please visit <a href="{% url 'verse_create' %}">our create page </a> in order to add new verses. 
+				</p>
+			</div>
+		{% else %}
+			<p> 
+				Hope these help.
+			</p>
+			<ul>
+			{% for verse in verse_list %}
+				<li>
+					{{ verse.text }}
+				</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
