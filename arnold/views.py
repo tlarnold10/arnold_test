@@ -10,3 +10,6 @@ def homepage(request):
 	else:
 		context = 'Good evening,' 
 	return render(request, 'index.html', {'time':context})
+
+def aboutpage(request):
+	return render(request, 'about.html')

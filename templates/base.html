@@ -22,7 +22,7 @@
 <div class="container">
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">
+    <a class="navbar-item" href="{% url 'home_page' %}">
       <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
     </a>
 
@@ -35,7 +35,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/">
+      <a class="navbar-item" href="{% url 'home_page' %}">
         Home
       </a>
       <div class="navbar-item has-dropdown is-hoverable">
@@ -57,11 +57,8 @@
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
+          <a class="navbar-item" href="{% url 'about_page' %}">
             About
-          </a>
-          <a class="navbar-item">
-            Jobs
           </a>
           <a class="navbar-item">
             Contact
