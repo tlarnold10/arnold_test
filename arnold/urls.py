@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from bible import urls as bible_urls
+from .views import homepage
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+	path(r'', homepage),
+    path(r'admin/', admin.site.urls),
     path(r'bible/', include(bible_urls)),
 ]
