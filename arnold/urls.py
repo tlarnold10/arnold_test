@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from bible import urls as bible_urls
 from .views import homepage, aboutpage
+from eoq import urls as eoq_urls
 
 urlpatterns = [
 	path(r'', homepage, name='home_page'),
     path(r'admin/', admin.site.urls),
     path(r'about/', aboutpage, name='about_page'),
     path(r'bible/', include(bible_urls)),
+    path(r'eoq/', include(eoq_urls)),
 ]
