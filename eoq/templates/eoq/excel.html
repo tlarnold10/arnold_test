@@ -7,9 +7,27 @@
 {% block content %}
 <div class="container">
     <form action="" enctype="multipart/form-data"  method="post">
-        <table>
-            <input type="file" name="myfile">
-        </table>
+		<div class="file is-boxed">
+		  <label class="file-label">
+		    <input class="file-input" type="file" name="myfile">
+		    <span class="file-cta">
+		      <span class="file-icon">
+		        <i class="fa fa-upload"></i>
+		      </span>
+		      <span class="file-label">
+		        Choose a file…
+		      </span>
+		    </span>
+		  </label>
+		</div>
+        <div class="field">
+            <label class="label">Holding Cost Per Unit</label>
+            <input class="input" type="text" placeholder="ENTER HOLDING COST PER UNIT" name="holding_cost">
+        </div>
+        <div class="field">
+            <label class="label">Reorder cost</label>
+            <input class="input" type="text" placeholder="ENTER REORDER COSTS"name="reorder">
+        </div>
         {% csrf_token %}
         <input type="submit" value="Submit">
     </form>

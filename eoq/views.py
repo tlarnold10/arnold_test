@@ -1,16 +1,16 @@
 from django.shortcuts import render
 from .forms import UploadFileForm
-import openpyxl
-import pdb
+import openpyxl, pdb, math
 
 def upload_file(request):
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
+		reorder = request.POST.get('reorder')
+		holding_cost = request.POST.get('holding_cost')
 		wb = openpyxl.load_workbook(request.FILES['myfile'])
-		w1 = wb.active
+		w1 = wb.active	
 		max_row = w1.max_row
 		cells = []
-		# pdb.set_trace()
 		total = 0
 		average = 0
 		count = 0 
@@ -20,7 +20,8 @@ def upload_file(request):
 			total += int(cell)
 			count += 1
 		average = round(total/count, 2)
-		context = {'cells':cells, 'average':average}
+		eoq = round(math.sqrt((2*average*float(reorder))/float(holding_cost)))
+		context = {'cells':cells, 'average':average, 'reorder':reorder, 'holding_cost':holding_cost, 'eoq':eoq}
 		return render(request, 'eoq/total.html', context)
 	else:
 		form = UploadFileForm()
