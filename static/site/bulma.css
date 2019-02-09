@@ -6064,6 +6064,12 @@ a.list-item {
   padding: 20px;
 }
 
+.bar {
+  background-color: teal;
+  display: inline-block;
+  width: 20px;
+}
+
 .navbar {
   background-color: white;
   min-height: 3.25rem;

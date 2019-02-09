@@ -6,22 +6,52 @@
 
 {% block content %}
 <div class="container">
-	<p>{{ reorder }}</p>
-	<p>{{ holding_cost }}</p>
-	<ul>
-	{% for cell in cells %}
-		<li>
-		{{ cell }}
-		</li>
-	{% endfor %}
-	</ul>
+	<p> Reorder Cost = {{ reorder }}</p>
+	<p> Holding Costs = {{ holding_cost }} per unit</p>
+<!--	<ul>
+		{% for cell in cells %}
+			<li>
+			{{ cell }}
+			</li>
+		{% endfor %}
+		</ul>
+-->
 	<p>
-		{{ average }}
+		Average number of sales = {{ average }}
 	</p>
 	<ul>
 		<li>
-			{{ eoq }} units
-		</li>
+			Economic order quantity = {{ eoq }} units
+		</li>	
 	</ul>
+	<div class="chart container">
+		<p>
+			Break down of sales. 
+		</p>
+	</div>
+	<script type="text/javascript">
+		var dataset = {{ cells }}
+
+		var yScale = d3.scaleLinear()
+			.domain([0, d3.max(dataset)])
+			.range([0,250])
+
+		d3.select("body")
+			.selectAll(".chart")
+			.append("div")
+			.attr("class", "container")
+			.append("g")
+			.data(dataset)
+			.enter()
+			.append("svg")
+			.attr("class", "bar")
+			.style("display", "inline-block")
+			.style("background-color", "teal")
+			.style("width", "20px")
+			.style("margin", "5px")
+			.style("height", function(d){
+				return yScale(d);
+			});
+	</script>
 </div>
 {% endblock %}
