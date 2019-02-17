@@ -24,7 +24,7 @@
 			Economic order quantity = {{ eoq }} units
 		</li>	
 	</ul>
-	<div class="chart container">
+	<div class="chart">
 		<p>
 			Break down of sales. 
 		</p>
@@ -36,22 +36,25 @@
 			.domain([0, d3.max(dataset)])
 			.range([0,250])
 
-		d3.select("body")
-			.selectAll(".chart")
-			.append("div")
-			.attr("class", "container")
-			.append("g")
+		var yAxis = d3.axisLeft()
+						.scale(yScale);
+
+		d3.select("div.chart")
+			.selectAll("svg")
 			.data(dataset)
 			.enter()
 			.append("svg")
-			.attr("class", "bar")
+			.attr("class", "bar")	
 			.style("display", "inline-block")
 			.style("background-color", "teal")
 			.style("width", "20px")
 			.style("margin", "5px")
 			.style("height", function(d){
 				return yScale(d);
-			});
+			})
+			.append("g")
+			.attr("class", "axis")
+			.call(yAxis);
 	</script>
 </div>
 {% endblock %}
