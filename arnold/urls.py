@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from bible import urls as bible_urls
-from .views import homepage, aboutpage
+from .views import homepage, aboutpage, youtubepage
 from eoq import urls as eoq_urls
 
 urlpatterns = [
@@ -25,4 +25,5 @@ urlpatterns = [
     path(r'about/', aboutpage, name='about_page'),
     path(r'bible/', include(bible_urls)),
     path(r'eoq/', include(eoq_urls)),
+    path(r'youtube/', youtubepage, name='youtube_page'),
 ]

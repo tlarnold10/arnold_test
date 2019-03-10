@@ -6,28 +6,15 @@
 
 {% block content %}
 <div class="container">
-	<p> Reorder Cost = {{ reorder }}</p>
-	<p> Holding Costs = {{ holding_cost }} per unit</p>
-<!--	<ul>
-		{% for cell in cells %}
-			<li>
-			{{ cell }}
-			</li>
-		{% endfor %}
-		</ul>
--->
-	<p>
-		Average number of sales = {{ average }}
-	</p>
-	<ul>
-		<li>
-			Economic order quantity = {{ eoq }} units
-		</li>	
-	</ul>
+	<br>
+	<div class="list">
+		<p class="list-item">Reorder Cost = {{ reorder }}</p>
+		<p class="list-item">Holding Costs = {{ holding_cost }} per unit</p>
+		<p class="list-item">Average number of sales = {{ average }}</p>
+		<p class="list-item">Economic order quantity = {{ eoq }} units</p>	
+	</div>
 	<div class="chart">
-		<p>
-			Break down of sales. 
-		</p>
+		<h3 class="subtitle is-3">Sales Breakdown</h3>
 	</div>
 	<script type="text/javascript">
 		var dataset = {{ cells }}
@@ -37,11 +24,14 @@
 			.range([0,250])
 
 		var yAxis = d3.axisLeft()
-						.scale(yScale);
+						.scale(yScale)
+						.ticks(10);
 
-		d3.select("div.chart")
-			.selectAll("svg")
-			.data(dataset)
+		var svg = d3.select("div.chart")
+			.append("div")
+			.selectAll("svg");
+
+		svg.data(dataset)
 			.enter()
 			.append("svg")
 			.attr("class", "bar")	
@@ -51,9 +41,12 @@
 			.style("margin", "5px")
 			.style("height", function(d){
 				return yScale(d);
-			})
-			.append("g")
+			});
+			
+		svg.append("g")
 			.attr("class", "axis")
+			.attr("transform", "translate(5,0)")
+			.attr("style", "background-color:black")
 			.call(yAxis);
 	</script>
 </div>

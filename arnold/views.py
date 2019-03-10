@@ -13,3 +13,6 @@ def homepage(request):
 
 def aboutpage(request):
 	return render(request, 'about.html')
+
+def youtubepage(request):
+	return render(request, 'youtube.html')

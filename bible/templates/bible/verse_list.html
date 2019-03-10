@@ -20,13 +20,13 @@
 			<p> 
 				Hope these help.
 			</p>
-			<ul>
 			{% for verse in verse_list %}
-				<li>
-					{{ verse.text }}
-				</li>
+				<h3 class="subtitle is-3">{{ verse.book }} {{ verse.chapter }}.{{ verse.verses }}</h3>
+				<div class="container" style="background-color: #ECECEC">
+					<p style="padding: 10px">{{ verse.text }}</p>
+				</div>
+				</br>
 			{% endfor %}
-			</ul>
 		{% endif %}
 	</div>
 </div>
