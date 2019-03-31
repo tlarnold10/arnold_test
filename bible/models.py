@@ -35,3 +35,9 @@ class Verse(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('verse_detail', kwargs={'slug': self.slug})
+
+	def get_update_url(self):
+		return reverse('verse_update', kwargs={'slug': self.slug})
+
+	def get_delete_url(self):
+		return reverse('verse_delete', kwargs={'slug': self.slug})

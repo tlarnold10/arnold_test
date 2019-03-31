@@ -25,6 +25,9 @@
 				<div class="container" style="background-color: #ECECEC">
 					<p style="padding: 10px">{{ verse.text }}</p>
 				</div>
+				<a href="{{ verse.get_absolute_url }}">Detail</a> | 
+				<a href="{{ verse.get_update_url }}">Edit</a> | 
+				<a href="{{ verse.get_delete_url }}">Delete</a>
 				</br>
 			{% endfor %}
 		{% endif %}

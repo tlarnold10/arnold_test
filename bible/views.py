@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, CreateView, DetailView
+import pdb
 
 from .models import Emotion, Verse
 from .forms import EmotionForm, VerseForm
@@ -33,3 +34,32 @@ class VerseCreate(CreateView):
 
 class VerseDetail(DetailView):
 	model = Verse
+
+class VerseUpdate(View):
+	form_class = VerseForm
+	model = Verse
+	template_name = 'bible/verse_update.html'
+
+	def get(self, request, slug):
+		verse = get_object_or_404(self.model, slug=slug)
+		context = {
+			'form':self.form_class(instance=verse),
+			'verse':verse,}
+		return render(request, self.template_name, context)
+
+	def post(self, request, slug):
+		verse = get_object_or_404(self.model, slug=slug)
+		print(verse.slug)
+		bound_form = self.form_class(request.POST, instance=verse)
+		# if bound_form.is_valid():
+		new_verse = bound_form.save()
+		return redirect(new_verse)
+#		else:
+#			context = {
+#				'form':bound_form,
+#				'verse':verse,
+#			}
+#			return render(request, self.template_name, context)
+
+class VerseDelete(View):
+	pass
