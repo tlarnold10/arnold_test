@@ -20,15 +20,13 @@
 			<p> 
 				How are you feeling today?
 			</p>
-			<ul>
+			<div class="row">
 				{% for emotion in emotion_list %}
-				<li style="padding:5px">
-					<a href="{{ emotion.get_new_url }}" class="button is-primary">
+					<a href="{{ emotion.get_new_url }}" class="button is-primary is-large is-rounded">
 						{{ emotion.name|title }}
 					</a>
-				</li>
 				{% endfor %}
-			</ul>
+			</div>
 		{% endif %}
 	</div>
 </div>

@@ -62,4 +62,12 @@ class VerseUpdate(View):
 #			return render(request, self.template_name, context)
 
 class VerseDelete(View):
-	pass
+	def get(self, request, slug):
+		verse = get_object_or_404(Verse, slug=slug)
+		verse.delete()
+		return render(request, 'bible/verse_confirm_delete.html', {'verse':verse})
+
+# 	def post(self, request, slug):
+# 		verse = get_object_or_404(Verse, slug=slug)
+# 		verse.delete()
+# 		return redirect('bible/emotion_list.html')
