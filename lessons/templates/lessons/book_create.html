@@ -1,0 +1,51 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Create Book
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="field">
+		<form
+			action="{% url 'book_create' %}"
+			method="post">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			{{ form.book_name.errors }}
+			<p>
+				<label for="id_name" class="label">
+					Title: 
+				</label>
+				{{ form.book_name }}
+			</p>
+			{{ form.book_author.errors }}
+			<p>
+				<label for="id_name" class="label">
+					Author: 
+				</label>
+				{{ form.book_author }}
+			</p>
+			{{ form.book_topic.errors }}
+			<p>
+				<label for="id_name" class="label">
+					Topic: 
+				</label>
+				{{ form.book_topic }}
+			</p>
+			{{ form.slug.errors }}
+			<p>
+				<label for="id_slug" class="label">
+					Slug: 
+				</label>
+				{{ form.slug }}
+			</p>
+			<p style="padding: 10px">
+				<button type="submit" class="button is-primary">
+					Create Book
+				</button>
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

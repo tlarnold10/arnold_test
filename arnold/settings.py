@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bible',
     'eoq',
+    'management',
+    'lessons',
     'widget_tweaks',
 ]
 

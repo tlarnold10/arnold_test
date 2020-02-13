@@ -1,0 +1,33 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Emotion List
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="status row">
+		{% if not book_list %}
+			<div class="row">
+				<p>
+					It seems that you have not written any books, idiot...
+				</p>
+				<p>
+					Please visit <a href="{% url 'book_create' %}">our create page </a> in order to add new books you idiot. 
+				</p>
+			</div>
+		{% else %}
+			<p> 
+				Select a book you want to learn more about
+			</p>
+			<div class="row">
+				{% for book in book_list %}
+					<a href="{{ book.get_new_url }}" class="button is-primary is-large is-rounded">
+						{{ book.name|title }}
+					</a>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

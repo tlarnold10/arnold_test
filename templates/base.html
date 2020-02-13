@@ -1,4 +1,4 @@
-{% load staticfiles %}
+﻿{% load staticfiles %}
 {% load widget_tweaks %}
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
    </script><![endif]-->
    <link rel="stylesheet" type="text/css" href="{% static 'site/bulma.css' %}">
    <script type="text/javascript" src="{% static 'site/d3.js' %}"></script>
-   <link rel="icon" type="image/png" href="{% static 'site/heytaco.png' %}">
+   <link rel="icon" type="image/png" href="{% static 'site/snow-leopard_01.jpg' %}">
  </head>
 
 <body>
@@ -58,6 +58,12 @@
       </a>
       <a href="{% url 'youtube_page' %}" class="navbar-item">
           Videos
+      </a>
+      <a href="{% url 'youtube_page' %}" class="navbar-item">
+          Management
+      </a>
+      <a href="{% url 'book_list' %}" class="navbar-item">
+          Lessons Learned
       </a>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">

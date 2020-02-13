@@ -1,0 +1,25 @@
+from django.conf.urls import url
+from .views import BookList, BookCreate, LessonCreate, LessonDetail, LessonList, LessonUpdate, LessonDelete
+urlpatterns = [
+	url(r'^$',
+		BookList.as_view(),
+		name='book_list'),
+	url(r'^create/$',
+		BookCreate.as_view(),
+		name='book_create'),
+	url(r'^lesson/create$',
+		LessonCreate.as_view(),
+		name='lesson_create'),
+	url(r'^lesson/(?P<slug>[\w\-]+)/$',
+		LessonDetail.as_view(),
+		name='lesson_detail'),
+ 	url(r'^(?P<book>[\w\-]+)/$',
+ 		LessonList.as_view(),
+ 		name='lesson_list'),
+ 	url(r'^lesson/(?P<slug>[\w\-]+)/update/$',
+ 		LessonUpdate.as_view(),
+ 		name='lesson_update'),
+ 	url(r'^lesson/(?P<slug>[\w\-]+)/delete/$',
+ 		LessonDelete.as_view(),
+ 		name='lesson_delete'),
+]

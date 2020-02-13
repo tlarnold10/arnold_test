@@ -1,0 +1,36 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Verse List
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="status row">
+		{% if not verse_list %}
+			<div class="row">
+				<p>
+					You have no lessons for this book...
+				</p>
+				<p>
+					Please visit <a href="{% url 'lesson_create' %}">our create page </a> in order to add new verses. 
+				</p>
+			</div>
+		{% else %}
+			<p> 
+				Hope these help.
+			</p>
+			{% for lesson in lesson_list %}
+				<h3 class="subtitle is-3">{{ lesson.lesson }}</h3>
+				<div class="container" style="background-color: #ECECEC">
+					<p style="padding: 10px">{{ verse.text }}</p>
+				</div>
+				<a href="{{ lesson.get_absolute_url }}">Detail</a> | 
+				<a href="{{ lesson.get_update_url }}">Edit</a> | 
+				<a href="{{ lesson.get_delete_url }}">Delete</a>
+				</br>
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
