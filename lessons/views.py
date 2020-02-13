@@ -24,7 +24,7 @@ class LessonList(DetailView):
 
 	def get(self, request, book):
 		Lesson.objects.values_list('book', flat=True)
-		lessons = Lesson.objects.filter(lesson__slug=Lesson)
+		lessons = Lesson.objects.filter(book__slug=book)
 		context = {'lesson_list':lessons}
 		return render(request, self.template_name, context)
 

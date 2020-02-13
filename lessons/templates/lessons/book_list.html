@@ -23,7 +23,7 @@
 			<div class="row">
 				{% for book in book_list %}
 					<a href="{{ book.get_new_url }}" class="button is-primary is-large is-rounded">
-						{{ book.name|title }}
+						{{ book.book_name|title }}
 					</a>
 				{% endfor %}
 			</div>

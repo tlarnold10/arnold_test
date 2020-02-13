@@ -38,7 +38,7 @@ class Lesson(models.Model):
         return self.text
 
     class Meta:
-        ordering = ['book']
+        ordering = ['lesson']
 
     def get_absolute_url(self):
     	return reverse('lesson_detail', kwargs={'slug': self.slug})

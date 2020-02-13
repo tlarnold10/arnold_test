@@ -25,6 +25,7 @@ class Verse(models.Model):
 	verses = models.CharField(max_length=10)
 	text = models.TextField()
 	slug = models.SlugField(max_length=25)
+	
 	emotion = models.ForeignKey(Emotion, on_delete=models.CASCADE)
 
 	def __str__(self):
