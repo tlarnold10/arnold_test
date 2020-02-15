@@ -1,0 +1,44 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Create Lesson
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="field">
+		<form
+			action="{% url 'lesson_create' %}"
+			method="post">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			{{ form.lesson.errors }}
+			<p>
+				<label for="id_lesson" class="label">
+					Lesson: 
+				</label>
+				{{ form.lesson }}
+			</p>
+			{{ form.slug.errors }}
+			<p>
+				<label for="id_slug" class="label">
+					Slug: 
+				</label>
+				{{ form.slug }}
+			</p>
+			{{ form.book.errors }}
+			<p>
+				<label for="id_book" class="label">
+					Book: 
+				</label>
+				{{ form.book }}
+			</p>
+			<p style="padding: 10px">
+				<button type="submit" class="button is-primary">
+					Create Lesson
+				</button>
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

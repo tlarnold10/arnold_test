@@ -1,13 +1,13 @@
 {% extends parent_template|default:"base.html" %}
 
 {% block title %}
-{{ block.super }} - Verse List
+{{ block.super }} - Lesson List
 {% endblock %}
 
 {% block content %}
 <div class="container">
 	<div class="status row">
-		{% if not verse_list %}
+		{% if not lesson_list %}
 			<div class="row">
 				<p>
 					You have no lessons for this book...
@@ -17,15 +17,21 @@
 				</p>
 			</div>
 		{% else %}
+			<a href="{% url 'lesson_create' %}">
+				Add more lessons learned here...
+			</a>
 			<p> 
-				Hope these help.
+				Hopefully you can learn something from these.
 			</p>
+			</br>
 			{% for lesson in lesson_list %}
-				<h3 class="subtitle is-3">{{ lesson.lesson }}</h3>
-				<a href="{{ lesson.get_absolute_url }}">Detail</a> | 
-				<a href="{{ lesson.get_update_url }}">Edit</a> | 
-				<a href="{{ lesson.get_delete_url }}">Delete</a>
-				</br>
+				<div>
+					<p>{{ lesson.lesson }}</p>
+					<a href="{{ lesson.get_absolute_url }}">Detail</a> | 
+					<a href="{{ lesson.get_update_url }}">Edit</a> | 
+					<a href="{{ lesson.get_delete_url }}">Delete</a>
+				</div>
+			</br>
 			{% endfor %}
 		{% endif %}
 	</div>

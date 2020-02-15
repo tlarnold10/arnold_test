@@ -41,14 +41,14 @@ class LessonUpdate(View):
 	template_name = 'lessons/lesson_update.html'
 
 	def get(self, request, slug):
-		verse = get_object_or_404(self.model, slug=slug)
+		lesson = get_object_or_404(self.model, slug=slug)
 		context = {
 			'form':self.form_class(instance=lesson),
 			'lesson':lesson,}
 		return render(request, self.template_name, context)
 
 	def post(self, request, slug):
-		verse = get_object_or_404(self.model, slug=slug)
+		lesson = get_object_or_404(self.model, slug=slug)
 		print(lesson.slug)
 		bound_form = self.form_class(request.POST, instance=lesson)
 		# if bound_form.is_valid():
@@ -63,7 +63,7 @@ class LessonUpdate(View):
 
 class LessonDelete(View):
 	def get(self, request, slug):
-		lesson = get_object_or_404(Verse, slug=slug)
+		lesson = get_object_or_404(Lesson, slug=slug)
 		lesson.delete()
 		return render(request, 'lessons/lesson_confirm_delete.html', {'lesson':lesson})
 
