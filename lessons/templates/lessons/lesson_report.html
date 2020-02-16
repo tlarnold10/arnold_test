@@ -1,0 +1,27 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Lessons Report
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table class="table is-striped">
+        <thead>
+            {% for header in headers %}
+            <th>{{ header }}</th>
+            {% endfor %}
+        </thead>
+    {% for test in testing %}
+    <tr>
+        {% for item in test %}
+            <td>{{ item }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </table>
+    <p>
+        Total number of lessons learned {{ total }}
+    </p>
+</div>
+{% endblock %}

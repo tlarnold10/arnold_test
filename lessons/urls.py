@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import BookList, BookCreate, LessonCreate, LessonDetail, LessonList, LessonUpdate, LessonDelete
+from .views import BookList, BookCreate, LessonCreate, LessonDetail, LessonList, LessonUpdate, LessonDelete, LessonReport
 urlpatterns = [
 	url(r'^$',
 		BookList.as_view(),
@@ -22,4 +22,7 @@ urlpatterns = [
  	url(r'^lesson/(?P<slug>[\w\-]+)/delete/$',
  		LessonDelete.as_view(),
  		name='lesson_delete'),
+	url(r'^report',
+		LessonReport.as_view(),
+		name='lesson_report'),
 ]

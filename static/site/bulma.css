@@ -2867,7 +2867,7 @@ a.box:active {
 
 .content table th {
   color: #363636;
-  text-align: left;
+  text-align: center;
 }
 
 .content table thead td,
@@ -4835,6 +4835,7 @@ a.box:active {
 .table thead th {
   border-width: 0 0 2px;
   color: #363636;
+  text-align: center;
 }
 
 .table tfoot td,
