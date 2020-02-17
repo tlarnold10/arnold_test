@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, CreateView, DetailView
-import pdb, psycopg2
+import pdb, psycopg2, re
 import pandas as pa
 
 from .models import Book, Lesson
@@ -73,6 +73,7 @@ class LessonDelete(View):
 # 		verse.delete()
 # 		return redirect('bible/emotion_list.html')
 
+# Time for everyone's favorite thing, reporting. 
 class LessonReport(View):
 	def get(self, request):
 		table = pa.DataFrame(columns=['Lesson', 'Book Name', 'Book Topic'])
@@ -92,21 +93,53 @@ ORDER BY book_name, lesson
 		table.data = curs.fetchall()
 		total = len(table.data)
 		html_report(table)
-		return render(request, 'lessons/lesson_report.html', context = {'testing':table.data, 'headers':table.columns, 'total':total})
+		common = most_common_words(table)
+		return render(request, 'lessons/lesson_report.html', context = {'testing':table.data, 'headers':table.columns, 'total':total, 'common_words':common})
 
+# Generates the html for a stand alone report of my lessons learned. For learning purposes
 def html_report(table):
 	f = open('helloworld.html','w')
-	webpage = """<html><head></head><body><table style="border:1px solid black"><thead>"""
+	webpage = """<html>\n<head></head>\n<body>\n<table style="border:1px solid black">\n<thead>\n"""
 	for column in table.columns:
-		webpage = webpage + """<th style="border:1px solid black>""" + column + "</th>"
-	webpage = webpage + "</thead>"
-	
+		webpage = webpage + """<th style="border:1px solid black">""" + column + "</th>\n"
+	webpage = webpage + "</thead>\n"
+
 	for row in table.data:
-		webpage = webpage + """<tr>"""
+		webpage = webpage + """<tr>\n"""
 		for dp in row:
-			webpage = webpage + """<td style="border:1px solid black>""" + dp + "</td>"
+			webpage = webpage + """<td style="border:1px solid black">""" + dp + "</td>\n"
 		webpage = webpage + "</tr>"
-	webpage = webpage + """</table></body></html>"""
+	webpage = webpage + """</table>\n</body>\n</html>"""
 	f.write(webpage)
 	f.close()
 	return table
+
+# I want to get the word that most occures in my lesons, exluding commonly used words. 
+def most_common_words(table):
+	word_count = {}
+	lessons = []
+	bad_words = ['AND','THE', 'I', 'TO']
+	for data in table.data:
+		lessons.append(data[0])
+	for lesson in lessons:
+		for word in lesson.split():
+			word = re.sub('[^a-zA-Z]', '', word).upper()
+			if word in word_count and word not in bad_words:
+				word_count[word] += 1
+			elif word not in bad_words:
+				word_count[word] = 1
+	if word_count.keys() in bad_words:
+		print(word_count.keys())
+		for word in bad_words:
+			del word_count[word]
+	sorted_word_count = {}
+	for k in sorted(word_count, key=word_count.get, reverse=True):
+		sorted_word_count[k] = word_count[k]
+	ranking = 0
+	top_words = []
+	for word in list(sorted_word_count):
+		top_words.append(word)
+		ranking += 1
+		if ranking == 3:
+			break
+	return top_words

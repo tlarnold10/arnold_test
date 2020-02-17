@@ -23,5 +23,17 @@
     <p>
         Total number of lessons learned {{ total }}
     </p>
+    <h3>
+        Top words that I have been using:
+    </h3>
+    <div class="container">
+    <ol style="padding-left: 50px;">
+        {% for word in common_words %}
+        <li>
+            {{ word }}
+        </li>
+        {% endfor %}
+    </ol>
+    </div>
 </div>
 {% endblock %}
