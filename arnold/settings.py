@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'management',
     'lessons',
     'widget_tweaks',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

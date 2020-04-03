@@ -118,7 +118,7 @@ def html_report(table):
 def most_common_words(table):
 	word_count = {}
 	lessons = []
-	bad_words = ['AND','THE', 'I', 'TO']
+	bad_words = ['AND','THE', 'I', 'TO', 'A', 'IS', 'YOU', 'IN']
 	for data in table.data:
 		lessons.append(data[0])
 	for lesson in lessons:

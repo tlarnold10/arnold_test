@@ -20,6 +20,7 @@ from .views import homepage, aboutpage, youtubepage
 from eoq import urls as eoq_urls
 # from management import urls as management_urls
 from lessons import urls as lessons_urls
+from management import urls as management_urls
 
 urlpatterns = [
 	path(r'', homepage, name='home_page'),
@@ -30,4 +31,5 @@ urlpatterns = [
     path(r'youtube/', youtubepage, name='youtube_page'),
     # path(r'management/', management, include(management_urls)),
     path(r'lessons/', include(lessons_urls)),
+    path(r'chart/', include(management_urls)),
 ]
