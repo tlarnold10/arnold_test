@@ -10,15 +10,16 @@
 		{% if not weight_list %}
 			<div class="row">
 				<p>
-					It seems that you have not written any books, idiot...
+					Seems like you haven't sent your weight in for today. Enter it <a href="{% url 'weight_create' %}">here</a>.
 				</p>
 			</div>
 		{% else %}
 			<p> 
-				Select a book you want to learn more about
+				Looks like you are a big boy! Feel free to enter more weigh ins for today:
 			</p>
+			<a href="{% url 'weight_create' %}"><button class="button is-primary">Weigh In</button></a>
 			<div class="row">
-				<table class="table is-fullwidth">
+				<table class="table is-fullwidth is-striped is-hoverable">
 					<thead class="thead">
 						<th class="th">Date</th>
 						<th class="th">Weight</th>
@@ -29,7 +30,11 @@
 						<tr class="tr">
 							<td class="td" style="text-align: center;">{{ weight.weight_date }}</td>
 							<td class="td" style="text-align: center;">{{ weight.weight_weight }}</td>
-							<td class="td" style="text-align: center;" ><butto class="button"n>Delete</button></td>
+							<td class="td" style="text-align: center;" >
+								<a href="{{ weight.get_delete_url }}">
+									<button class="button is-primary">Delete</button>
+								</a>
+							</td>
 						</tr>
 					{% endfor %}
 					</tbody>
