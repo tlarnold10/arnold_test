@@ -1,0 +1,25 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Create Book
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="field">
+		<form
+			action="{% url 'weight_create' %}"
+			method="post">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			{{ form.weight_weight.errors }}
+			<p>
+				<label for="id_name" class="label">
+					Today's Weight: 
+				</label>
+				{{ form.weight_weight }}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'bible',
     'eoq',
     'management',
+    'fitness',
     'lessons',
     'widget_tweaks',
     'rest_framework'

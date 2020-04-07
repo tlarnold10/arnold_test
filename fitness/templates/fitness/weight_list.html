@@ -1,0 +1,41 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Emotion List
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="status row">
+		{% if not weight_list %}
+			<div class="row">
+				<p>
+					It seems that you have not written any books, idiot...
+				</p>
+			</div>
+		{% else %}
+			<p> 
+				Select a book you want to learn more about
+			</p>
+			<div class="row">
+				<table class="table is-fullwidth">
+					<thead class="thead">
+						<th class="th">Date</th>
+						<th class="th">Weight</th>
+						<th class="th">Delete</th>
+					</thead>
+					<tbody class="tbody">
+					{% for weight in weight_list %}
+						<tr class="tr">
+							<td class="td" style="text-align: center;">{{ weight.weight_date }}</td>
+							<td class="td" style="text-align: center;">{{ weight.weight_weight }}</td>
+							<td class="td" style="text-align: center;" ><butto class="button"n>Delete</button></td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
