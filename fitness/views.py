@@ -29,3 +29,7 @@ class WeightDelete(View):
 class WeightViewSet(viewsets.ModelViewSet):
     queryset = Weight.objects.all()
     serializer_class = WeightSerializer
+
+class WeightChart(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'fitness/weight_chart.html')

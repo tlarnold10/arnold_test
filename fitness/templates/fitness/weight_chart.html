@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+var endpoint = '/fitness/chart/?format=json';
+var labels = [];
+// $.ajax({
+//     method: "GET",
+//     url: endpoint,
+//     labels: records,
+//     success: function(data){
+//         alert(defaultData)
+//     },
+//     error: function(error_data){
+//         console.log("error")
+//         console.log(error_data)
+//     }
+// })
+
+setChart();
+
+function iterate(data) {
+    var string = "";
+    for (var i = 0; i < data.length; i++) {
+        string += "Weight: " + (data[i].weight_weight) + " Date: " + (data[i].weight_date) + " | ";
+    }
+    document.getElementById('things').innerHTML = string;
+}
+
+function setChart(){
+    fetch(endpoint)
+        .then(res => res.json())
+        .then(data => iterate(data))
+}
+// var ctx = document.getElementById("myChart");
+
+</script>
+
+<div class='row'>
+    <div class='col-sm-12'>
+        <h1>Hello World</h1>
+        <div class='col-sm-6' id="things">
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

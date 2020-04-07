@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from .views import WeightList, WeightCreate, WeightDelete, WeightViewSet
+from .views import WeightList, WeightCreate, WeightDelete, WeightViewSet, WeightChart
 
 router = routers.DefaultRouter()
 router.register(r'chart', WeightViewSet)
@@ -16,6 +16,6 @@ urlpatterns = [
  		WeightDelete.as_view(),
  		name='weight_delete'),
     url(r'', include(router.urls)),
-    url(r'chart', 
-        include('rest_framework.urls', namespace='rest_framework'))
+    url(r'chart', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^weight/chart/', WeightChart.as_view()),
 ]
