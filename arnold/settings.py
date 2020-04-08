@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import csv
+import pdb
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -80,13 +82,25 @@ WSGI_APPLICATION = 'arnold.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# Grabbing database information from my C: drive. 
+# for row in csv.reader(file('C:\\Users\\Arnold\\django\\database_config.csv', "r"), delimiter = ','):
+
+with open('C:\\Users\\Arnold\\django\\database_config.csv') as file:
+    csv_config = csv.reader(file, delimiter=',')
+    for row in csv_config:
+        if row[0] != 'host':
+            host = row[0]
+            database = row[1]
+            username = row[2]
+            password = row[3]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'arnold',
-        'USER': 'postgres',
-        'PASSWORD': 'snowlep',
-        'HOST': 'localhost',
+        'NAME': database,
+        'USER': username,
+        'PASSWORD': password,
+        'HOST': host,
         'PORT': '5432'
     }
 }
