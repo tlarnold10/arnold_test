@@ -19,11 +19,45 @@ var labels = [];
 setChart();
 
 function iterate(data) {
-    var string = "";
+    var weights = [];
     for (var i = 0; i < data.length; i++) {
-        string += "Weight: " + (data[i].weight_weight) + " Date: " + (data[i].weight_date) + " | ";
+        weights.push(data[i].weight_weight);
     }
-    document.getElementById('things').innerHTML = string;
+    var h = 300;
+    var w = 100;
+	var barPadding = 7;
+    var svg = d3.select("div.col-sm-6")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h);
+
+    svg.selectAll("rect")
+        .data(weights)
+        .enter()
+        .append("rect")
+        .attr("x", function(d, i) {
+            return i * 21;
+        })
+        .attr("y", function(d) {
+            return h - ((d - 180) * 10);
+        })
+        .attr("width", w / weights.length - barPadding)
+        .attr("height", function(d) {
+            return (d - 180) * 10;
+        })
+		.attr("fill", function(d) {
+			return "rgb(102, 0, " + Math.round((d - 180) * 10) + ")";
+        })
+        .on("mouseover", function(d) {
+            d3.select(this)
+                .attr("fill", "red");
+        })
+        .on("mouseout", function(d) {
+            d3.select(this)
+            .attr("fill", function(d) {
+                return "rgb(102, 0, " + Math.round((d - 180) * 10) + ")";
+            })
+        });
 }
 
 function setChart(){
@@ -35,9 +69,10 @@ function setChart(){
 
 </script>
 
-<div class='row'>
+<div class='container'>
+    <br>
     <div class='col-sm-12'>
-        <h1>Hello World</h1>
+        <h1 class="title">Charts 'n shit</h1>
         <div class='col-sm-6' id="things">
         </div>
     </div>
