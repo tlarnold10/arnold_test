@@ -1,0 +1,49 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Emotion List
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="status row">
+		{% if not workout_list %}
+			<div class="row">
+				<p>
+					Looks like you haven't worked out yet today you lazy bum! Go enter your workout
+						<a href="{% url 'workout_create' %}">here</a>.
+				</p>
+			</div>
+		{% else %}
+			<p> 
+				Looks like you are making some progress, well done!
+			</p>
+			<a href="{% url 'workout_create' %}"><button class="button is-primary">Log Workout</button></a>
+			<div class="row">
+				<table class="table is-fullwidth is-striped is-hoverable">
+					<thead class="thead">
+						<th class="th">Date</th>
+						<th class="th">Duration</th>
+						<th class="th">Type</th>
+						<th class="th">Delete</th>
+					</thead>
+					<tbody class="tbody">
+					{% for workout in workout_list %}
+						<tr class="tr">
+							<td class="td" style="text-align: center;">{{ workout.workout_date }}</td>
+							<td class="td" style="text-align: center;">{{ workout.workout_duration }}</td>
+							<td class="td" style="text-align: center;">{{ workout.workout_type }}</td>
+							<td class="td" style="text-align: center;" >
+								<a href="{{ workout.get_delete_url }}">
+									<button class="button is-primary">Delete</button>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

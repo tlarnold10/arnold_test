@@ -6,7 +6,7 @@ from .models import Weight, PersonalBest, Workout
 from .forms import WeightForm, PersonalBestForm, WorkoutForm
 from .serializers import WeightSerializer
 
-# Create your views here.
+# Weight Views ========================================================================
 class WeightList(View):
     template_name = 'fitness/weight_list.html'
 
@@ -33,3 +33,22 @@ class WeightViewSet(viewsets.ModelViewSet):
 class WeightChart(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'fitness/weight_chart.html')
+
+# Workout Views ================================================================================
+class WorkoutList(View):
+    template_name = 'fitness/workout_list.html'
+
+    def get(self, request):
+        workouts = Workout.objects.all()
+        context = {'workout_list':workouts}
+        return render(request, self.template_name, context)
+
+class WorkoutCreate(CreateView):
+    form_class = WorkoutForm
+    template_name = 'fitness/workout_create.html'
+
+class WorkoutDelete(View):
+    def get(self, request, workout_date):
+        workout = Workout.objects.filter(workout_date=workout_date)
+        workout.delete()
+        return render(request, 'fitness/workout_delete.html', {'workout_date':workout_date})

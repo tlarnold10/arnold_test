@@ -17,6 +17,15 @@ class Workout(models.Model):
     workout_duration = models.IntegerField()
     workout_type = models.CharField(choices=WORKOUT_TYPES, default='lift', max_length=100)
 
+    class Meta:
+        ordering = ['workout_date']
+
+    def get_absolute_url(self):
+        return reverse('workout_list')
+
+    def get_delete_url(self):
+    	return reverse('workout_delete', kwargs={'workout_date': self.workout_date})
+
 
 class PersonalBest(models.Model):
     pr_date = models.DateField(auto_now_add=True)
