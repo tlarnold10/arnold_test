@@ -1,0 +1,14 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+{{ block.super }} - Create Book
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div id="chart"></div>
+    <script>
+        showChart( {{workout}} );
+    </script>
+</div>
+{% endblock %}

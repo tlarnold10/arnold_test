@@ -5,6 +5,7 @@ from rest_framework import viewsets
 from .models import Weight, PersonalBest, Workout
 from .forms import WeightForm, PersonalBestForm, WorkoutForm
 from .serializers import WeightSerializer
+import pdb
 
 # Weight Views ========================================================================
 class WeightList(View):
@@ -52,3 +53,11 @@ class WorkoutDelete(View):
         workout = Workout.objects.filter(workout_date=workout_date)
         workout.delete()
         return render(request, 'fitness/workout_delete.html', {'workout_date':workout_date})
+
+class WorkoutChart(View):
+    def get(self, request):
+        workouts = Workout.objects.all()
+        js_workouts = []
+        for workout in workouts:
+            js_workouts.append(workout.workout_duration)
+        return render(request, 'fitness/workout_chart.html', {'workout':js_workouts})

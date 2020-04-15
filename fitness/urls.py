@@ -1,6 +1,7 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from .views import WeightList, WeightCreate, WeightDelete, WeightViewSet, WeightChart, WorkoutList, WorkoutCreate, WorkoutDelete
+from .views import WeightList, WeightCreate, WeightDelete, WeightViewSet, WeightChart, \
+	WorkoutList, WorkoutCreate, WorkoutDelete, WorkoutChart
 
 router = routers.DefaultRouter()
 router.register(r'chart', WeightViewSet)
@@ -21,10 +22,13 @@ urlpatterns = [
 	url(r'^workout$',
 		WorkoutList.as_view(),
 		name='workout_list'),
-	url(r'^workout/weight_create/$',
+	url(r'^workout/workout_create/$',
 		WorkoutCreate.as_view(),
 		name='workout_create'),
  	url(r'^workout/(?P<workout_date>[\w\-]+)/delete/$',
  		WorkoutDelete.as_view(),
  		name='workout_delete'),
+	url(r'^workout/workout_chart/$',
+		WorkoutChart.as_view(),
+		name='workout_chart'),
 ]
