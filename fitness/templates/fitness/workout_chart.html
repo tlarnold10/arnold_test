@@ -8,7 +8,7 @@
 <div class="container">
     <div id="chart"></div>
     <script>
-        showChart( {{workout}} );
+        showChart( {{ workout|safe }}, {{ labels|safe }});
     </script>
 </div>
 {% endblock %}

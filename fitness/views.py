@@ -57,7 +57,13 @@ class WorkoutDelete(View):
 class WorkoutChart(View):
     def get(self, request):
         workouts = Workout.objects.all()
+        js_labels = ['run', 'bike','lift','beach body lift','beach body cardio',\
+            'beach body boxing','lift from home','crossfit / HIT']
         js_workouts = []
         for workout in workouts:
-            js_workouts.append(workout.workout_duration)
-        return render(request, 'fitness/workout_chart.html', {'workout':js_workouts})
+            record_array = []
+            record_array.append(workout.workout_date.strftime('%m/%d/%Y'))
+            record_array.append(workout.workout_duration)
+            record_array.append(workout.workout_type)
+            js_workouts.append(record_array)
+        return render(request, 'fitness/workout_chart.html', {'workout':js_workouts, 'labels':js_labels})
