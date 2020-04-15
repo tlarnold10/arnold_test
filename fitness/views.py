@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, CreateView, DetailView
 from rest_framework import viewsets
+from django.db.models import Sum
 
 from .models import Weight, PersonalBest, Workout
 from .forms import WeightForm, PersonalBestForm, WorkoutForm
@@ -60,6 +61,10 @@ class WorkoutChart(View):
         js_labels = ['run', 'bike','lift','beach body lift','beach body cardio',\
             'beach body boxing','lift from home','crossfit / HIT']
         js_workouts = []
+        for type in js_labels:
+            workout_type = Workout.objects.filter(workout_type=type).aggregate(Sum('workout_duration'))['workout_duration__sum']
+            if workout_type != None:
+                print("Type: " + type + " " + str(workout_type))
         for workout in workouts:
             record_array = []
             record_array.append(workout.workout_date.strftime('%m/%d/%Y'))
