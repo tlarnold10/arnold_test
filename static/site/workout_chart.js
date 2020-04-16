@@ -29,7 +29,7 @@ function showChart(data, labels, sums) {
                 </thead>";
     for (i=0; i<labels.length; i++) {
         html += "<tr class=\"tr\">";
-        html += ("<td class=\"td\">" + String(labels[i]) + "</td>" + "<td class=\"td\">" + String(sums[i]) + "</td>");
+        html += ("<td class=\"td\">" + String(labels[i]).toUpperCase() + "</td>" + "<td class=\"td\">" + String(sums[i]) + "</td>");
         html += "</tr>";
     }
     html += "</table>";
