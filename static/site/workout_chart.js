@@ -1,6 +1,8 @@
-function showChart(data, labels) {
+function showChart(data, labels, sums) {
     console.log(data);
     console.log(labels);
+    console.log(sums);
+    // First I want to add all my workouts to a table. 
     html = "";
     html += "<table class=\"table is-fullwidth is-striped is-hoverable\>\
                 <thead class=\"thead\">\
@@ -17,4 +19,20 @@ function showChart(data, labels) {
     }
     html += "</table>";
     document.getElementById('chart').innerHTML += html;
+
+    // Next we want to table the sum of all of our workouts. 
+    html = "";
+    html += "<table class=\"table is-fullwidth is-striped is-hoverable\>\
+                <thead class=\"thead\">\
+                <th class=\"th\">Workout</th>\
+                <th class=\"th\">Total Duration</th>\
+                </thead>";
+    for (i=0; i<labels.length; i++) {
+        html += "<tr class=\"tr\">";
+        html += ("<td class=\"td\">" + String(labels[i]) + "</td>" + "<td class=\"td\">" + String(sums[i]) + "</td>");
+        html += "</tr>";
+    }
+    html += "</table>";
+    document.getElementById('chart').innerHTML += html;
+    console.log("butt");
 }
