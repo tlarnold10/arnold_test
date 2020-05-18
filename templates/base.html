@@ -76,6 +76,19 @@
         </div>
       </div>
       <div class="navbar-item has-dropdown is-hoverable">
+        <a href="{% url 'workout_chart' %}" class="navbar-link">
+          Fitness
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="{% url 'workout_list' %}">
+            Workouts
+          </a>
+          <a class="navbar-item" href="{% url 'weight_list' %}">
+            Weigh Ins
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           More
         </a>
