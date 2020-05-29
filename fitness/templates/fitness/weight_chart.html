@@ -24,8 +24,18 @@ function iterate(data) {
         weights.push(data[i].weight_weight);
     }
     var h = 300;
-    var w = 185;
-	var barPadding = 7;
+    var w = 1000;
+    var barPadding = 55;
+    
+    
+    
+    var scale = d3.scaleLinear()
+                  .domain([d3.min(weights), d3.max(weights)])
+                  .range([h, 0]);
+    
+    var y_axis = d3.axisLeft()
+                    .scale(scale);
+
     var svg = d3.select("div.col-sm-6")
                     .append("svg")
                     .attr("width", w)
@@ -58,6 +68,10 @@ function iterate(data) {
                 return "rgb(102, 0, " + Math.round((d - 180) * 10) + ")";
             })
         });
+
+        svg.append("g")
+            .attr("class", "axis")
+            .call(y_axis);
 }
 
 function setChart(){
