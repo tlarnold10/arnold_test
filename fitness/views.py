@@ -6,7 +6,6 @@ from django.db.models import Sum
 from .models import Weight, PersonalBest, Workout
 from .forms import WeightForm, PersonalBestForm, WorkoutForm
 from .serializers import WeightSerializer
-import pdb
 
 # Weight Views ========================================================================
 class WeightList(View):

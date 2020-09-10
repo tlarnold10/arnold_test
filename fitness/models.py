@@ -15,7 +15,7 @@ WORKOUT_TYPES = (
 class Workout(models.Model):
     workout_date = models.DateField(auto_now_add=True)
     workout_duration = models.IntegerField()
-    workout_type = models.CharField(choices=WORKOUT_TYPES, default='lift', max_length=100)
+    workout_type = models.CharField(choices=WORKOUT_TYPES, default='lift from home', max_length=100)
 
     class Meta:
         ordering = ['workout_date']

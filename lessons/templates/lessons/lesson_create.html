@@ -14,14 +14,14 @@
 			{{ form.non_field_errors }}
 			{{ form.lesson.errors }}
 			<p>
-				<label for="id_lesson" class="label">
+				<label onClick="slugify(this.innerHTML)" for="id_lesson" class="label">
 					Lesson: 
 				</label>
 				{{ form.lesson }}
 			</p>
 			{{ form.slug.errors }}
 			<p>
-				<label for="id_slug" class="label">
+				<label id="mySlug" for="id_slug" class="label">
 					Slug: 
 				</label>
 				{{ form.slug }}
@@ -41,4 +41,16 @@
 		</form>
 	</div>
 </div>
+
+<script>
+	var slug = ""
+	function slugify(lesson) {
+		console.log(lesson)
+		slug += lesson;
+		slug.replace(" ", "_");
+		document.getElementById('mySlug').value = slug;
+	}
+</script>
+
 {% endblock %}
+
