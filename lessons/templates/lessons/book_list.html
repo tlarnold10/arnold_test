@@ -18,10 +18,8 @@
 			</div>
 		{% else %}
 			<br>
-			<p> 
-				Select a book you want to learn more about. Or you can add a new book <a href="{% url 'book_create'%}">here</a>.
-			</p>
-			<br>
+			<a class="button is-primary" href="{% url 'book_create' %}">Add Book</a>
+			</br>
 			<div class="list is-hoverable">
 				{% for book in book_list %}
 					<a href="{{ book.get_new_url }}" class="list-item">

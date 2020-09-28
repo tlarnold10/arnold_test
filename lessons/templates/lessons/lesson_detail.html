@@ -6,6 +6,9 @@
 
 {% block content %}
 <div class="container">
+	<p>
+		<a href="{% url 'book_list' %}">Return to Book List</a>
+	</p>
 	<div class="status row">
 		{{ lesson.lesson|title }}
 	</div>

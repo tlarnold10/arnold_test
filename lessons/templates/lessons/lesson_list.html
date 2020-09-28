@@ -17,23 +17,27 @@
 				</p>
 			</div>
 		{% else %}
-			<a href="{% url 'lesson_create' %}">
-				Add more lessons learned here...
-			</a>
+			<a href="{% url 'lesson_create' %}" class="button is-primary">Add Lesson</a>
 			<p> 
 				Hopefully you can learn something from these.
 			</p>
 			</br>
 			{% for lesson in lesson_list %}
-				<div>
-					<p>{{ lesson.lesson }}</p>
-					<a href="{{ lesson.get_absolute_url }}">Detail</a> | 
-					<a href="{{ lesson.get_update_url }}">Edit</a> | 
-					<a href="{{ lesson.get_delete_url }}">Delete</a>
+				<div class="list is-hoverable">
+					<div class="list-item">
+						<p>{{ lesson.lesson }}</p>
+						<a href="{{ lesson.get_absolute_url }}">Detail</a> | 
+						<a href="{{ lesson.get_update_url }}">Edit</a> | 
+						<a href="{{ lesson.get_delete_url }}">Delete</a>
+					</div>
 				</div>
 			</br>
 			{% endfor %}
 		{% endif %}
+		<div class="status row">
+			<a class="button is-primary" href="{% url 'book_list' %}">Return to book list</a>
+		</div>
+	</br>
 	</div>
 </div>
 {% endblock %}
