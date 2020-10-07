@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'arnold.wsgi.application'
 # Grabbing database information from my C: drive. 
 # for row in csv.reader(file('C:\\Users\\Arnold\\django\\database_config.csv', "r"), delimiter = ','):
 
-with open('C:\\Users\\Arnold\\django\\database_config.csv') as file:
+with open('/mnt/c/Users/Arnold/django/database_config.csv') as file:
     csv_config = csv.reader(file, delimiter=',')
     for row in csv_config:
         if row[0] != 'host':
