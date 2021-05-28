@@ -119,7 +119,11 @@ def most_common_words(table):
 	word_count = {}
 	lessons = []
 	bad_words = ['AND','THE', 'I', 'TO', 'A', 'IS', 'YOU', 'IN', 'OF', 'THAT', 
-					'BE', 'ARE', 'YOUR', 'WITH', 'THINGS', 'ON', 'IT', '', 'FOR']
+					'BE', 'ARE', 'YOUR', 'WITH', 'THINGS', 'ON', 'IT', '', 'FOR',
+					'WHAT', 'SHOULD', 'AN', 'HAVE', 'CAN', 'WHEN', 'NOT', 'DO', 'AS',
+					'OR', 'WILL', 'BY', 'IF', 'ONE', 'THIS', 'HOW', 'ABOUT', 'BUT',
+					'FROM', 'AT', 'THAN', 'USE', 'THEY', 'THEIR', 'ALL', 'WHICH', 'THERE',
+					'OTHER', 'THROUGH', 'LIKE', 'GET', 'WOULD', 'EACH', 'OUT']
 	for data in table.data:
 		lessons.append(data[0])
 	for lesson in lessons:
@@ -141,6 +145,6 @@ def most_common_words(table):
 	for word in list(sorted_word_count):
 		top_words.append(word)
 		ranking += 1
-		if ranking == 3:
+		if ranking == 15:
 			break
 	return top_words
